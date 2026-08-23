@@ -3,7 +3,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Efek scroll halus saat menu diklik */
 }
 
 body {
@@ -74,8 +74,9 @@ nav a:hover {
   border-radius: 8px;
   padding: 20px;
   color: white;
-  /* Kunci agar judul pas berada di bawah navbar saat diklik */
-  scroll-margin-top: 130px; 
+  margin-bottom: 1.5rem;
+  /* Kunci agar judul berjarak pas di bawah navbar sticky saat menu diklik */
+  scroll-margin-top: 90px; 
 }
 
 .jumbotron {
@@ -131,38 +132,17 @@ aside {
 }
 
 /* =========================================
-   SISTEM TABBING (MURNI CSS TANPA JAVASCRIPT)
-   ========================================= */
-
-/* Sembunyikan semua artikel secara default */
-#content .card {
-  display: none;
-}
-
-/* Tampilkan artikel pertama (Academy) saat pertama kali buka */
-#content .card:first-child {
-  display: block;
-}
-
-/* Sembunyikan artikel pertama jika ada tab lain yang diklik */
-#content:has(:target) .card:first-child {
-  display: none;
-}
-
-/* Tampilkan HANYA artikel yang sedang aktif diklik */
-#content .card:target {
-  display: block !important;
-}
-
-/* =========================================
    RESPONSIVE DESIGN (KHUSUS MOBILE)
    ========================================= */
 
 @media screen and (max-width: 768px) {
-  /* Sembunyikan Jumbotron dan Aside di Mobile agar presisi seperti sampel */
-  .jumbotron,
   aside {
     display: none;
+  }
+
+  .jumbotron {
+    padding: 30px 15px;
+    font-size: 16px;
   }
 
   nav {
@@ -183,8 +163,8 @@ aside {
 
   .card {
     padding: 16px;
-    /* Penyesuaian jarak scroll khusus di layar HP */
-    scroll-margin-top: 100px; 
+    /* Memberi ruang offset agar judul tidak tertutup menu sticky di layar HP */
+    scroll-margin-top: 105px; 
   }
 
   .featured-image {
