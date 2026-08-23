@@ -2,16 +2,33 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Quicksand", sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #01080e;
 }
 
 h2,
 h3,
 h4 {
   color: white;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+h4 {
+  font-weight: 500;
+  color: #a0aec0;
+  margin-bottom: 1rem;
 }
 
 footer {
@@ -23,14 +40,15 @@ footer {
 }
 
 nav a {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-  color: white;
+  color: #e2e8f0;
 }
 
 nav a:hover {
   font-weight: bold;
+  color: #ffffff;
 }
 
 .profile header {
@@ -53,23 +71,28 @@ nav a:hover {
 .card {
   background-color: #020c10;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 20px;
   color: white;
+  /* Kunci agar judul pas berada di bawah navbar saat diklik */
+  scroll-margin-top: 130px; 
 }
 
 .jumbotron {
   font-size: 20px;
-  padding: 60px;
+  padding: 40px 20px;
   background-color: #051116;
   text-align: center;
   color: white;
 }
 
 nav ul {
-  padding-inline: 4rem;
+  padding: 0;
+  margin: 0;
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 nav li {
@@ -78,10 +101,11 @@ nav li {
 
 nav {
   background-color: #020c10;
-  padding: 5px;
+  padding: 15px 10px;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 main {
@@ -90,115 +114,80 @@ main {
   gap: 1.5rem;
   background-image: url("background.jpg");
   background-size: cover;
-  background-attachment: fixed; /* efek paralaks */
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
+  min-height: 100vh;
 }
 
 #content {
   flex: 5;
   display: flex;
   flex-flow: column nowrap;
-  gap: 1rem 2rem;
 }
 
 aside {
   flex: 1;
 }
 
-header {
-  display: inline;
-}
-
 /* =========================================
    SISTEM TABBING (MURNI CSS TANPA JAVASCRIPT)
    ========================================= */
 
-/* 1. Sembunyikan semua artikel secara default */
+/* Sembunyikan semua artikel secara default */
 #content .card {
   display: none;
 }
 
-/* 2. Tampilkan artikel pertama (Academy) saat web baru dibuka */
+/* Tampilkan artikel pertama (Academy) saat pertama kali buka */
 #content .card:first-child {
   display: block;
 }
 
-/* 3. Jika ada menu yang diklik, sembunyikan artikel pertama */
+/* Sembunyikan artikel pertama jika ada tab lain yang diklik */
 #content:has(:target) .card:first-child {
   display: none;
 }
 
-/* 4. Tampilkan HANYA artikel yang ID-nya sedang diklik (target aktif) */
+/* Tampilkan HANYA artikel yang sedang aktif diklik */
 #content .card:target {
   display: block !important;
 }
 
-
 /* =========================================
-   RESPONSIVE DESIGN (MEDIA QUERIES)
+   RESPONSIVE DESIGN (KHUSUS MOBILE)
    ========================================= */
 
-/* Perangkat dengan lebar layar 1200px dan di bawahnya */
-@media screen and (max-width: 1200px) {
-  main {
-    flex-direction: column;
-    padding: 20px;
+@media screen and (max-width: 768px) {
+  /* Sembunyikan Jumbotron dan Aside di Mobile agar presisi seperti sampel */
+  .jumbotron,
+  aside {
+    display: none;
   }
 
-  aside {
-    width: 100%;
-    align-self: stretch;
+  nav {
+    padding: 12px 8px;
   }
 
   nav ul {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 0.8rem 1.2rem;
+  }
+
+  nav a {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 12px;
   }
 
   .card {
-    padding: 20px;
+    padding: 16px;
+    /* Penyesuaian jarak scroll khusus di layar HP */
+    scroll-margin-top: 100px; 
   }
 
-  .featured-image {
-    max-width: 600px;
-  }
-}
-
-/* Perangkat dengan lebar layar 768px dan di bawahnya */
-@media screen and (max-width: 768px) {
   .featured-image {
     max-width: 100%;
-  }
-
-  .card {
-    padding: 16px;
-  }
-
-  .jumbotron {
-    padding: 40px 20px;
-    font-size: 18px;
-  }
-
-  nav ul {
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 1rem;
-    padding: 0.5rem;
-  }
-
-  nav li {
-    margin: 0;
-  }
-
-  main {
-    flex-direction: column;
-    padding: 16px;
-  }
-
-  aside {
-    width: 100%;
   }
 }
